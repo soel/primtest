@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319090343) do
+ActiveRecord::Schema.define(version: 20150323021457) do
 
   create_table "books", id: false, force: true do |t|
     t.integer  "book_id"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
   end
+
+  add_index "books", ["book_id"], name: "index_books_on_book_id", unique: true, using: :btree
 
   create_table "items", id: false, force: true do |t|
     t.string   "code"
@@ -26,5 +29,7 @@ ActiveRecord::Schema.define(version: 20150319090343) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "items", ["code"], name: "index_items_on_code", unique: true, using: :btree
 
 end
